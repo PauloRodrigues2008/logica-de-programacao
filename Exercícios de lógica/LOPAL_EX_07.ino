@@ -1,51 +1,61 @@
-//Faça um programa que receba o nome, cargo, e salário de um funcionário. Calcule o
-//salário a ser acrescido de 10%. Ao final exiba o nome, o cargo e o novo salário desse
-//funcionário.
-
-//Variáveis
-String nome = "";
-String cargo = "";
-float salarioInicial = 0;
-float salarioAcrescido = 0;
+//Faça um programa que receba o nome, cargo e salário de um funcionário. 
+//Calcule o  salário acrescido de 10%. Ao final exiba o nome, 
+//o cargo e o novo salário desse  funcionário.
 
 void setup()
 {
-  Serial.begin (9600);
+  Serial.begin(9600);
 }
+
+String nome = "";
+String cargo = "";
+float salario = 0;
+float aumentoDeSalario = 0;
 
 void loop()
 {
- 
-   //Cabeçalho
-  Serial.println("|------------------------------|");
-  Serial.println("|                              |");
-  Serial.println("|     LOPAL - EX_07            |");
-  Serial.println("|                              |");
-  Serial.println("|------------------------------|");
-  Serial.println();//pula uma linha
-  Serial.println();//pula uma linha
+  //cabeçalho
+  Serial.println ("|------------------------------|");//primeira linha
+  Serial.println ("|                              |");//segunda linha
+  Serial.println ("|        LOPAL - EX_07         |");//terceira linha
+  Serial.println ("|                              |");//quarta linha
+  Serial.println ("|------------------------------|");//quinta linha
   
+  //entrada
+  Serial.println ("Digite seu nome: ");//pergunta 
+  while(! Serial.available() );//espera o usuario digitar/dar um <Enter>
+  nome = Serial.readStringUntil('\n');//resposta de nome do usuario
+  nome.trim();
   
-  //Entrada 
-  Serial.println("Digite seu nome");//pergunta o nome do usuário
-  while(! Serial.available() );//espera o usuário digitar/dar um <Enter>
-  nome = Serial.readString();//resposta do usuário / ler um texto da serial
-  nome.trim();//retira  o \n (retira o enter capturado)
+  Serial.println ("Digite seu cargo: ");//pergunta 
+  while(! Serial.available() );//espera o usuario digitar/dar um <Enter>
+  cargo = Serial.readStringUntil('\n');//resposta de nome do usuario
+  cargo.trim();
   
-  Serial.println("Digite seu cargo");//pergunta o cargo do usuário
-  while(! Serial.available() );//espera o usuário digitar/dar um <Enter>
-  cargo = Serial.readString();//resposta do usuário / ler um texto da serial
-  cargo.trim();//retira  o \n (retira o enter capturado)
-  
-  Serial.println("Digite seu salario");//pergunta o salário do usuário
-  while(! Serial.available() );//espera o usuário digitar/dar um <Enter>
-  salarioInicial = Serial.parseFloat();//resposta do usuário
+  Serial.println ("Digite seu salario: ");//pergunta 
+  while(! Serial.available() );//espera o usuario digitar/dar um <Enter>
+  salario = Serial.parseInt();//resposta do usario
   
   //processamento
-  salarioAcrescido = salarioInicial + (salarioInicial * 0.10);
+  aumentoDeSalario = salario * 1.10;
   
-  //saída
-  Serial.println("O seu nome eh: " + String (nome) );
-  Serial.println("O seu salario acrescido eh: " + String (salarioAcrescido) );
-  delay(5000);//aguarda 5 segundos antes de rodar o loop novamente
+  //saida - formatada
+  Serial.println("Relatorio:");
+  Serial.println();
+  Serial.println("---------------------------");
+  Serial.println();
+  Serial.print ("nome: ");
+  Serial.println (nome);
+  Serial.print ("cargo: ");
+  Serial.println (cargo);
+  Serial.println ("Seu salario atual sera: " + String(aumentoDeSalario, 2) );
+  Serial.println ();
+  Serial.println("---------------------------");
+  
+  Serial.println("Digite uma letra + <Enter> para continuar...");//gambi para fazer o programa parar
+  while (! Serial.available());
+  Serial.println ();
+  Serial.println ();
+  Serial.read ();//limpa o cache do /n - o <Enter>
+  
 }
