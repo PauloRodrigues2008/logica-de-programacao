@@ -23,7 +23,7 @@ void setup()
   pinMode(ledAzul2, OUTPUT );
   pinMode(ledAzul3, OUTPUT );
   Serial.begin(9600);
-  motor.attach(2);
+  motor.attach(12);
   motor.write(0);
 
   
@@ -58,27 +58,27 @@ void loop()
 
     Serial.println(" Que pena, tente outra vez !!");
     Serial.println();
-   digitalWrite(7, HIGH);
+   digitalWrite(ledVermelho, HIGH);
     delay(500);
-    digitalWrite(7, LOW);
+    digitalWrite(ledVermelho, LOW);
 
   }
 
   
-   if(acertos == 0)
+   if(acertos == 1)
      
    {    
-    digitalWrite(2, HIGH);
+    digitalWrite(ledAzul, HIGH);
 
-  }else if(acertos == 2)
+  }else if(acertos = 2)
 
   {
-    digitalWrite(3, HIGH);
+    digitalWrite(ledAzul, HIGH);
 
-  } else if(acertos == 3)
+  } else if(acertos = 3)
      
    { 
-     digitalWrite(4, HIGH);
+     digitalWrite(ledAzul, HIGH);
      
      
     motor.write(0);
